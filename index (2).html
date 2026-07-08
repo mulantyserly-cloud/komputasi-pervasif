@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART CBT MODERN</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background-circle circle1"></div>
+<div class="background-circle circle2"></div>
+
+<div class="container">
+
+    <!-- LOGIN -->
+    <div id="loginPage" class="card login-card">
+
+        <div class="logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+
+        <h1>SMART CBT</h1>
+
+        <p class="subtitle">
+            Computer Based Test
+        </p>
+
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input
+                type="text"
+                id="nama"
+                autocomplete="off"
+                placeholder="Masukkan Nama">
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-id-card"></i>
+            <input
+                type="text"
+                id="nim"
+                autocomplete="off"
+                placeholder="Masukkan NIM">
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input
+                type="password"
+                id="password"
+                autocomplete="off"
+                placeholder="Masukkan Password">
+        </div>
+
+        <button id="btnLogin" class="btn-primary" onclick="mulaiUjian()">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Masuk Ujian
+        </button>
+
+    </div>
+
+    <!-- HALAMAN UJIAN -->
+    <div id="examPage" style="display:none;">
+
+        <div class="topbar">
+
+            <div class="user-box">
+                <i class="fa-solid fa-circle-user"></i>
+
+                <div>
+                    <span id="namaPeserta"></span><br>
+                    <small id="nimPeserta"></small>
+                </div>
+
+            </div>
+
+            <div id="timer">
+                30:00
+            </div>
+
+        </div>
+
+        <div class="progress-area">
+
+            <div class="progress-text">
+                Progress Soal
+            </div>
+
+            <div class="progress">
+                <div id="progressBar"></div>
+            </div>
+
+        </div>
+
+        <div class="question-card">
+
+            <h2 id="nomorSoal">
+                Soal 1
+            </h2>
+
+            <p id="pertanyaan">
+
+            </p>
+
+            <div id="pilihan"></div>
+
+            <div class="navigation">
+
+                <button
+                    class="btn-secondary"
+                    onclick="soalSebelumnya()">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Sebelumnya
+
+                </button>
+
+                <button
+                    class="btn-primary"
+                    onclick="soalBerikutnya()">
+
+                    Selanjutnya
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <button
+            class="btn-submit"
+            onclick="submitUjian()">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Submit Ujian
+
+        </button>
+
+    </div>
+
+    <!-- HASIL -->
+    <div id="hasilPage" style="display:none;">
+
+        <div class="card hasil-card">
+
+            <i class="fa-solid fa-award trophy"></i>
+
+            <h2>HASIL UJIAN</h2>
+
+            <h3 id="hasilNama"></h3>
+
+            <p id="hasilNim"></p>
+
+            <h1 id="nilaiAkhir">
+                0
+            </h1>
+
+            <h3 id="predikat"></h3>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL WARNING -->
+<div id="warningModal" class="warning-modal">
+
+    <div class="warning-box">
+
+        <div class="warning-icon">
+            ⚠️
+        </div>
+
+        <h1>PERINGATAN</h1>
+
+        <p>
+            Anda terdeteksi berpindah tab atau tidak aktif.
+        </p>
+
+        <h2>
+            Pelanggaran :
+            <span id="jumlahPelanggaran">0</span>
+        </h2>
+
+        <button
+            class="btn-warning"
+            onclick="tutupWarning()">
+
+            Saya Mengerti
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
