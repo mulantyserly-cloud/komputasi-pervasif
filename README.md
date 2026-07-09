@@ -1,4 +1,3 @@
-📝 README & Panduan Penggunaan
 🎓 Aplikasi Data Mahasiswa Berbasis Google Spreadsheet
 
 👤 Nama Mahasiswa: Serly Mulanty
