@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ ARENA! ✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Animate.css untuk Efek Panggung -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Google Fonts: Orbitron & Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght=700;900&family=Quicksand:wght=700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Efek Audio Klik Suara Arcade -->
+    <audio id="sfx-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav"></audio>
+
+    <!-- LIVE STAGE BACKGROUND EFFECT -->
+    <div class="cyber-grid"></div>
+    <div class="stage-glow-floor"></div>
+
+    <!-- MAIN TITLE HEADER (Atas Tengah) -->
+    <div class="text-center mb-8 main-logo-container animate__animated animate__pulse animate__infinite animate__slower">
+        <h1 class="text-glow-white">QUIZ</h1>
+        <h1 class="text-glow-cyan">ARENA!</h1>
+    </div>
+
+    <!-- MAIN INTERFACE ARENA (Satu Kontainer Utama yang Berganti Halaman) -->
+    <div class="w-full max-w-4xl flex items-center justify-center relative z-10 px-4">
+
+        <!-- ================= SCENE 1: LOGIN STAGE ================= -->
+        <div id="login-scene" class="w-full max-w-md game-card card-glow-pink p-6 relative flex flex-col justify-between">
+            <!-- Chibi Megurine Luka (CSS Vector Anime Art) -->
+            <div class="chibi-character chibi-luka">
+                <div class="chibi-head-luka">
+                    <div class="chibi-eye left"></div>
+                    <div class="chibi-eye right"></div>
+                    <div class="chibi-blush"></div>
+                    <div class="chibi-mouth"></div>
+                </div>
+                <div class="chibi-body-luka">🎤</div>
+            </div>
+            
+            <div>
+                <div class="stage-title-header title-pink">LOGIN STAGE</div>
+                
+                <div class="space-y-4 mt-12 relative z-10">
+                    <div class="input-field-box">
+                        <label>Name</label>
+                        <input type="text" id="input-nama" placeholder="Masukkan nama..." autocomplete="off">
+                    </div>
+                    <div class="input-field-box">
+                        <label>NIM</label>
+                        <input type="text" id="input-nim" placeholder="Masukkan NIM..." autocomplete="off">
+                    </div>
+                    <div class="input-field-box">
+                        <label>Password</label>
+                        <div class="relative">
+                            <input type="password" id="input-pass" placeholder="Masukkan password...">
+                            <span class="absolute right-3 top-3 opacity-40 cursor-pointer">👁️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <button onclick="prosesLogin()" class="btn-pill btn-pink w-full mt-6 py-3 text-lg relative z-10">
+                    START STAGE!
+                </button>
+                <div class="bottom-indicator-btn indicator-pink">LOGIN STAGE</div>
+            </div>
+        </div>
+
+        <!-- ================= SCENE 2: EXAM STAGE (HIDDEN SECARA BAWAAN) ================= -->
+        <div id="exam-scene" class="hidden w-full max-w-3xl game-card card-glow-cyan p-6 relative animate__animated">
+            
+            <!-- HUD EXAM STAGE BAR -->
+            <div class="game-header-bar">
+                <div class="player-profile-zone">
+                    <h3 id="player-nama">Player Name</h3>
+                    <p id="player-nim">NIM: 10D580DS</p>
+                </div>
+                <div class="timer-zone">
+                    <div class="timer-box" id="game-clock">10:00</div>
+                </div>
+                <div class="cheat-zone">
+                    <span>Pelanggaran Tab: <strong id="warning-count">0/3</strong> <span class="text-amber-400">⚠️</span></span>
+                </div>
+            </div>
+
+            <div class="stage-title-header title-cyan flex justify-between items-center px-2">
+                <span>EXAM STAGE</span>
+                <!-- FITUR PAUSE KUNING NEON DI KANAN ATAS -->
+                <button id="btn-pause-toggle" onclick="togglePause()" class="btn-pause-action">⏸️ PAUSE</button>
+            </div>
+
+            <!-- MAIN QUIZ AREA -->
+            <div class="relative z-10 mt-4" id="quiz-content-area">
+                <!-- QUESTION CONTAINER BOX -->
+                <div class="question-container-box mb-4 relative">
+                    <!-- Chibi Hatsune Miku Menyembul dari Samping Soal -->
+                    <div class="chibi-character chibi-miku">
+                        <div class="chibi-hair-twin left"></div>
+                        <div class="chibi-hair-twin right"></div>
+                        <div class="chibi-head-miku">
+                            <div class="chibi-eye left miku-cyan"></div>
+                            <div class="chibi-eye right miku-cyan"></div>
+                            <div class="chibi-blush"></div>
+                            <div class="chibi-mouth smile"></div>
+                        </div>
+                        <div class="chibi-body-miku">🩵</div>
+                    </div>
+                    
+                    <h2 id="question-text" class="text-center font-bold px-4">Loading Soal Arena...</h2>
+                </div>
+
+                <!-- OPTIONS GRID: 2 KIRI & 2 KANAN PERSIS SEPERTI DI GAMBAR -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6" id="options-container">
+                    <!-- Diisi Otomatis Lewat JS -->
+                </div>
+                
+                <div class="flex justify-end mt-4">
+                    <div class="text-[11px] text-amber-400 font-bold tracking-wider animate-pulse" id="question-badge">STAGE 01</div>
+                </div>
+            </div>
+
+            <div class="bottom-indicator-btn indicator-cyan">EXAM STAGE</div>
+
+            <!-- OVERLAY JIKA KENA PAUSE / ANTI-CHEAT BLOCK -->
+            <div id="overlay-screen" class="hidden absolute inset-0 bg-slate-950/95 z-50 flex flex-col items-center justify-center text-white p-4 text-center rounded-[24px] border-2 border-yellow-400">
+                <h1 class="font-bold text-2xl text-yellow-400 mb-2 tracking-widest uppercase animate-pulse" id="overlay-title">STAGE PAUSED</h1>
+                <p class="text-xs text-gray-400 mb-4 max-w-xs" id="overlay-desc">Game dihentikan sementara, klik tombol di bawah untuk melanjutkan kembali.</p>
+                <button id="btn-resume" onclick="resumeGame()" class="btn-pill bg-gradient-to-r from-yellow-400 to-amber-500 text-black px-8 py-2 text-sm font-black rounded-full shadow-[0_0_15px_rgba(251,191,36,0.6)]">
+                    RESUME PLAY ▶️
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= SCENE 3: RESULT STAGE (HIDDEN SECARA BAWAAN) ================= -->
+        <div id="result-scene" class="hidden w-full max-w-md game-card card-glow-pink p-6 relative animate__animated">
+            
+            <div class="stage-title-header title-pink">RESULT STAGE</div>
+            
+            <div class="text-center my-6 relative z-10">
+                <p class="text-[10px] tracking-widest text-slate-400 font-bold uppercase">RANK</p>
+                <h1 id="result-rank" class="rank-neon-text">S</h1>
+                <p class="status-clear-text animate-pulse">STAGE CLEAR!</p>
+            </div>
+
+            <div class="result-scoreboard-box relative z-10 mb-6 p-4 bg-black/40 rounded-xl border border-purple-950">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-slate-400 text-sm">Total Skor:</span>
+                    <span id="result-score" class="text-2xl text-yellow-300 font-black tracking-wide">0</span>
+                </div>
+                <div class="w-full h-[1px] bg-purple-900/50 my-2"></div>
+                <div class="flex justify-between text-xs">
+                    <span class="text-slate-400">Jawaban Benar:</span>
+                    <span id="result-correct" class="text-emerald-400 font-bold">0 / 5</span>
+                </div>
+                <div class="flex justify-between text-xs mt-1">
+                    <span class="text-slate-400">Pelanggaran Tab:</span>
+                    <span id="result-violation" class="text-rose-500 font-bold">0 / 3</span>
+                </div>
+            </div>
+
+            <button onclick="location.reload()" class="btn-pill btn-pink w-full py-3 text-base relative z-10">
+                PLAY AGAIN 🔄
+            </button>
+            
+            <div class="bottom-indicator-btn indicator-pink">RESULT STAGE</div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
