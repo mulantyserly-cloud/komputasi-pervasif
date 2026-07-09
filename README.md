@@ -3,6 +3,8 @@
 
 👤 Nama Mahasiswa: Serly Mulanty
 
+🎓 Dosen Pengampu :Zikri Wahyudi, S.T., M.Kom.
+
 📚 Mata Kuliah: Komputasi Pervasif
 
 1. 📖 Deskripsi Proyek
