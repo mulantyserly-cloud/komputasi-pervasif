@@ -1,92 +1,106 @@
-🎓 Aplikasi Data Mahasiswa Berbasis Google Spreadsheet
+# 🎮 QUIZ ARENA! 🚀
 
-👤 Nama Mahasiswa: Serly Mulanty
+Aplikasi web kuis interaktif berbasis *Single Page Architecture* (SPA) dengan tema visual panggung arcade/cyberpunk yang modern. Proyek ini menggabungkan antarmuka responsif berbasis **Tailwind CSS**, animasi dinamis **Animate.css**, serta sistem manajemen state kuis menggunakan **JavaScript** murni (*Vanilla JS*).
 
-🎓 Dosen Pengampu :Zikri Wahyudi, S.T., M.Kom.
+---
 
-📚 Mata Kuliah: Komputasi Pervasif
+## 🛠️ Struktur Berkas Proyek
 
-1. 📖 Deskripsi Proyek
-Aplikasi ini merupakan sistem berbasis web untuk mengelola data mahasiswa secara efisien dengan menggunakan Google Spreadsheet sebagai basis data (database). Sistem ini mendukung penuh operasi CRUD (Create, Read, Update, Delete) yang dijembatani melalui Google Apps Script sebagai API.
+Proyek ini dibangun secara modular menggunakan tiga komponen utama[cite: 1]:
+* **`index.html`** – Berisi kerangka utama halaman, struktur panggung kuis, dan tata letak UI[cite: 1].
+* **`style.css`** – Mengatur gaya visual tema neon, efek latar belakang panggung, serta pembuatan komponen grafis karakter berbasis CSS murni[cite: 1].
+* **`script.js`** – Mengatur logika kuis, *timer counting*, sistem deteksi kecurangan, dan sinkronisasi data dengan server[cite: 1].
 
-2. ✨ Fitur Utama
-📊 Menampilkan data mahasiswa secara real-time.
+---
 
-➕ Menambah data baru ke spreadsheet.
+## 📦 Langkah-Langkah Persiapan & Instalasi
 
-✏️ Mengubah data yang sudah ada.
+Ikuti langkah berikut untuk menyiapkan proyek di komputer Anda:
 
-🗑️ Menghapus data mahasiswa.
+### 1. Ekstrak Berkas
+Pastikan Anda telah mengekstrak seluruh isi file `projek Serly Mulanty.zip` ke dalam satu folder khusus (misalnya nama folder: `quiz-arena`). Jangan memisahkan file `index.html`, `script.js`, dan `style.css` agar integrasi sistem tidak terputus[cite: 1].
 
-🔍 Pencarian data secara cepat.
+### 2. Membuka Proyek
+Anda dapat menjalankan aplikasi ini menggunakan dua metode:
 
-📱 Responsive Design (nyaman diakses via HP maupun Laptop).
+* **Metode Standar (Langsung):**
+  1. Buka folder tempat Anda mengekstrak berkas.
+  2. Klik ganda (*double click*) pada file **`index.html`**[cite: 1].
+  3. Aplikasi akan langsung terbuka di peramban (*browser*) bawaan Anda (Disarankan: Google Chrome atau Mozilla Firefox).
 
-🔗 Terhubung langsung dengan Google Spreadsheet.
+* **Metode Developer (Menggunakan Live Server VS Code):**
+  1. Buka aplikasi **Visual Studio Code**.
+  2. Pilih menu **File > Open Folder...** lalu arahkan ke folder proyek Anda.
+  3. Pastikan ekstensi **Live Server** sudah terinstal di VS Code Anda.
+  4. Klik kanan pada file `index.html`, lalu pilih **Open with Live Server**. Metode ini lebih disarankan untuk pengembangan karena mendukung pembaruan otomatis (*live reload*).
 
-3. 🛠️ Teknologi yang Digunakan
-🌐 HTML5 – Struktur halaman web.
+---
 
-🎨 CSS3 – Desain dan tata letak.
+## 🕹️ Panduan Jalannya Permainan (Alur Kuis)
 
-⚡ JavaScript – Logika aplikasi dan integrasi API.
+Aplikasi ini berjalan melalui 3 tahapan panggung utama secara sekuensial tanpa *reload* halaman:
 
-⚙️ Google Apps Script – Backend / API pendukung.
+1. **Login Stage (Tahap Autentikasi):**
+   * Masukkan nama, NIM, dan kata sandi Anda pada kolom input yang tersedia.
+   * Klik tombol **START STAGE!** untuk memverifikasi data dan masuk ke area kuis.
 
-📊 Google Spreadsheet – Penyimpanan basis data.
+2. **Exam Stage (Tahap Pengerjaan):**
+   * Anda akan dihadapkan pada 5 butir soal pilihan ganda secara bergantian.
+   * **Sistem Timer:** Waktu pengerjaan akan terus berjalan mundur. Anda dapat menggunakan tombol *Pause* jika diperlukan, yang akan menghentikan waktu secara sinkron.
+   * **Sistem Anti-Cheat:** Jangan berpindah tab atau meminimalkan jendela browser selama ujian aktif. Jika Anda keluar dari tab (peristiwa *blur/tab-out*), sistem akan memberikan peringatan tegas. Batas pelanggaran maksimal adalah 3 kali sebelum Anda dinyatakan gugur (*Game Over*).
 
-4. 📂 Struktur Folder
-Plaintext
-project/
-├── 📄 index.html
-├── 🎨 style.css
-├── ⚡ script.js
-└── 📝 README.md
-5. 🚀 Panduan Instalasi & Konfigurasi
-📊 Buat Google Spreadsheet baru di Google Drive Anda.
+3. **Result Stage (Tahap Hasil & Skor):**
+   * Setelah selesai atau waktu habis, sistem akan menghitung skor Anda secara otomatis.
+   * Halaman akan menampilkan total nilai akhir beserta peringkat kelulusan (*Rank*).
+   * Tekan tombol **PLAY AGAIN 🔄** jika ingin mengulang kembali kuis dari awal.
 
-📝 Buat header pada baris pertama dengan urutan: NIM, Nama, Prodi, Semester, Email.
+---
 
-🛠️ Klik menu Extensions → Apps Script.
+## 📊 Hasil yang Dihasilkan (Expected Outputs)
 
-📋 Tempel kode API (doGet) yang tersedia di bawah ke dalam editor Apps Script.
+Setelah Anda menjalankan proyek ini, berikut adalah output dan perilaku sistem yang akan dihasilkan pada setiap tahapan:
 
-🌐 Klik tombol Deploy → New deployment.
+### 1. Tampilan Login Stage (Awal)
+* **Output Visual:** Halaman berlatar belakang gelap dengan aksen lampu neon futuristik. Di bagian tengah, terdapat form login interaktif. Di samping atau sekitar form, muncul karakter chibi *Megurine Luka* & *Hatsune Miku* yang dibuat menggunakan CSS murni dengan animasi halus (*floating effect*).
+* **Hasil Aksi:** Jika input kosong atau salah, sistem memunculkan validasi. Jika berhasil, halaman akan bertransisi mulus (menggunakan efek *Animate.css*) langsung masuk ke area kuis tanpa *loading* ulang.
 
-⚙️ Atur konfigurasi: Execute as = Me dan Who has access = Anyone.
+### 2. Tampilan Exam Stage (Proses Kuis)
+* **Output Visual:** Pertanyaan kuis muncul satu per satu di dalam kotak panel (*card*) bergaya arkade. Di bagian atas panggung, terdapat bilah informasi yang menampilkan nama peserta, sisa waktu (*countdown timer*) yang terus berkurang secara *real-time*, dan indikator jumlah pelanggaran (*Cheat Count: 0/3*).
+* **Hasil Mekanis Anti-Cheat:** 
+  * Jika pengguna mencoba membuka tab baru, peramban akan langsung memicu fungsi *tab-out detection*.
+  * Layar akan memunculkan pesan peringatan modal/alert: **"Peringatan: Jangan meninggalkan panggung ujian!"**.
+  * Angka pelanggaran akan bertambah (+1). Jika mencapai 3 kali, panggung langsung terkunci dan menampilkan status *Game Over* / Gugur.
 
-🔗 Klik Deploy dan Salin URL Web App yang dihasilkan.
+### 3. Tampilan Result Stage (Papan Skor Akhir)
+* **Output Visual:** Panel kuis berganti menjadi papan pengumuman skor akhir yang meriah dengan efek animasi selebrasi jika lulus.
+* **Hasil Kalkulasi:** Menampilkan total jawaban benar dari 5 soal, skor akhir berbasis skala 100, dan predikat kelulusan otomatis, misalnya **Rank S** untuk nilai sempurna, atau **Rank A/B/C**.
 
-💾 Buka file script.js di proyek Anda, lalu tempel URL tersebut ke dalam variabel API_URL.
+---
 
-💻 Jalankan project Anda menggunakan ekstensi Live Server di VS Code atau browser.
+## 📈 Integrasi Database Spreadsheet (Google Sheets)
 
-6. 💻 Contoh Google Apps Script
-JavaScript
-function doGet() {
- const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
- const data = sheet.getDataRange().getValues();
- let hasil = [];
- 
- for(let i = 1; i < data.length; i++){
-  hasil.push({
-    nim: data[i][0],
-    nama: data[i][1],
-    prodi: data[i][2],
-    semester: data[i][3],
-    email: data[i][4]
-  });
- }
- 
- return ContentService.createTextOutput(JSON.stringify(hasil))
- .setMimeType(ContentService.MimeType.JSON);
-}
-7. 🧪 Metode Pengujian
-Tambahkan satu atau dua baris data simulasi secara manual langsung pada Google Spreadsheet Anda.
+Ketika mahasiswa menekan tombol penyelesaian kuis pada **Result Stage**, `script.js` secara otomatis mengirimkan *payload* data mahasiswa secara *real-time* menggunakan metode HTTP POST ke Google Apps Script Web App[cite: 1]. 
 
-Buka atau refresh halaman aplikasi web Anda.
+Berikut adalah **struktur baris data mahasiswa** yang otomatis masuk dan tersusun rapi pada Spreadsheet admin:
 
-Jika data berhasil muncul di tabel halaman web, berarti konfigurasi URL Web App dan integrasi API sudah berjalan dengan benar dan sukses! ✅
+| Timestamp | NIM | Nama Mahasiswa | Skor Akhir | Total Benar | Pelanggaran (Cheat Count) | Status Kelulusan |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `09/07/2026 22:15:34` | `2209106001` | Serly Mulanty | `100` | `5 / 5` | `0 (Bersih)` | LULUS (Rank S) |
+| `09/07/2026 22:18:12` | `2209106042` | Budi Dermawan | `80` | `4 / 5` | `1 (Peringatan)` | LULUS (Rank A) |
+| `09/07/2026 22:20:05` | `2209106015` | Andi Wijaya | `0` | `0 / 5` | `3 (Gugur)` | GAGAL (Game Over) |
 
-8. 🏁 Penutup
-Dokumen ini disusun sebagai panduan penggunaan resmi dan dokumentasi teknis untuk proyek Aplikasi Data Mahasiswa Berbasis Google Spreadsheet. Semoga panduan ini mempermudah pemahaman alur kerja aplikasi. Selamat mencoba! 🎉
+> ⚠️ **Catatan Sistem:** Jika status pelanggaran mencapai angka 3, sistem secara paksa mengirimkan nilai `0` ke dalam Spreadsheet dengan keterangan Status `GAGAL (Game Over)` sebagai sanksi fitur *Anti-Cheat*.
+
+---
+
+## ⚙️ Panduan Kustomisasi Developer (Advanced)
+
+Jika Anda ingin memodifikasi atau mengembangkan kuis ini lebih lanjut:
+
+* **Mengubah Bank Soal:**
+  Buka file `script.js` dan cari array `quizData` pada baris atas[cite: 1]. Anda dapat mengubah teks pertanyaan, pilihan opsi, maupun indeks jawaban yang benar (dimulai dari indeks `0` untuk pilihan pertama hingga `3` untuk pilihan keempat).
+* **Konfigurasi API Server:**
+  Proyek ini menggunakan integrasi dengan Google Apps Script untuk sistem autentikasi eksternal. Endpoint server didefinisikan pada variabel `WEB_APP_URL` di dalam `script.js`[cite: 1]. Jika server eksternal mengalami kendala, sistem telah dilengkapi fitur *local fallback* otomatis agar kuis tetap dapat diuji coba secara lokal.
+
+---
+Developed with 💖 by **Serly Mulanty** ✨
